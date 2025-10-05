@@ -1,0 +1,53 @@
+---
+title: "project_milestone_2"
+format: html
+editor: visual
+---
+
+## Project Milestone 2
+
+**\# What is the data source?**
+
+-   The data set is from 2023 and came in as csv via GitHub.
+
+**\# How does the dataset relate to the group problem statement and question?**
+
+-   The dataset relate to the group problem statement and question because we are investigating the outbreak in California. The dataset provides information about California residents: such as age, race, and other important aspects of this research.
+
+**\# Document the import process**
+
+-   The way we obtained the data sets were we downloaded it from github into our local disk. From there, we used the "read.csv" function to import it into our R.
+
+**\# Identify data types for 5+ data elements/columns/variables:**
+
+-   The five elements we chose are within the ca_pop_2023 data set. We chose county, age category, sex, race, and population size. We did not find that health officer region is useful in our scenario.
+
+**\# Data elements that need cleaning or re-categorization**
+
+-   The only one that needed cleaning into the snake case format was sim_LA. The reason for that is because the names were all in caps. In order to do so, we had to use the function "rename_with(TOLOWER)." The other two data sets were already in snake case, so no cleaning up was needed.
+
+```{r}
+
+library(tidyverse)
+library(janitor)
+library(dplyr)
+
+ca_pop_clean <- read.csv("/Users/julianaverruck/Downloads/ca_pop_clean.csv")
+sim_LA <- read.csv("/Users/julianaverruck/Downloads/sim_novelid_LACounty.csv")
+sim_CA <- read.csv("/Users/julianaverruck/Downloads/sim_novelid_CA.csv")
+
+sim_LA <- sim_LA %>%
+  rename_with(tolower)
+
+str(ca_pop_clean)
+
+mean(ca_pop_clean$pop)
+median(ca_pop_clean$pop)
+range(ca_pop_clean$pop)
+unique(ca_pop_clean$county)
+unique(ca_pop_clean$race7)
+unique(ca_pop_clean$sex)
+unique(ca_pop_clean$age_cat)
+
+
+```
